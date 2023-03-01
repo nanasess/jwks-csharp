@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  jwks-csharp:
+    image: ${DOCKER_REGISTRY-}jwkscsharp
+    build:
+      context: .
+      dockerfile: jwks-csharp/Dockerfile
+  db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    ports:
+        - "1433:1433"
+    environment:
+        SA_PASSWORD: "S3cur3P@ssW0rd!"
+        ACCEPT_EULA: "Y"
